@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/openclaw_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e">
+
+    <!-- WebView for OpenClaw Control Panel -->
+    <WebView
+        android:id="@+id/openclaw_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- Status / Loading overlay -->
+    <LinearLayout
+        android:id="@+id/openclaw_status_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#1a1a2e"
+        android:padding="32dp">
+
+        <!-- App logo placeholder -->
+        <ImageView
+            android:id="@+id/openclaw_logo"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="OpenClaw" />
+
+        <TextView
+            android:id="@+id/openclaw_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OpenClaw"
+            android:textSize="28sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/openclaw_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI on your phone"
+            android:textSize="16sp"
+            android:textColor="#aaaaaa"
+            android:layout_marginBottom="32dp" />
+
+        <ProgressBar
+            android:id="@+id/openclaw_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:layout_marginBottom="16dp"
+            android:progressTint="#6c63ff"
+            android:progressBackgroundTint="#333355" />
+
+        <TextView
+            android:id="@+id/openclaw_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Initializing…"
+            android:textSize="14sp"
+            android:textColor="#888888"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <!-- Onboarding overlay for API key setup (shown on first launch) -->
+    <ScrollView
+        android:id="@+id/openclaw_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1a1a2e"
+        android:visibility="gone"
+        android:padding="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="24dp"
+                android:contentDescription="OpenClaw" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to OpenClaw"
+                android:textSize="24sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Run AI models privately on your phone.\nEnter your API key to get started."
+                android:textSize="14sp"
+                android:textColor="#aaaaaa"
+                android:gravity="center"
+                android:layout_marginBottom="32dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="OpenAI API Key"
+                app:hintTextColor="#6c63ff"
+                app:boxStrokeColor="#6c63ff">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/openclaw_api_key_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="#ffffff"
+                    android:hint="sk-..." />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="Gateway Token (optional)"
+                app:hintTextColor="#6c63ff"
+                app:boxStrokeColor="#6c63ff">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/openclaw_gateway_token_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="#ffffff" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/openclaw_start_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Start OpenClaw"
+                android:textSize="16sp"
+                app:backgroundTint="#6c63ff"
+                app:cornerRadius="12dp" />
+
+            <TextView
+                android:id="@+id/openclaw_skip_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skip — I'll configure later"
+                android:textSize="13sp"
+                android:textColor="#666688"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- FAB to toggle terminal view -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openclaw_terminal_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Open Terminal"
+        android:src="@drawable/ic_new_session"
+        app:backgroundTint="#6c63ff"
+        app:tint="#ffffff"
+        android:visibility="gone" />
+
+</FrameLayout>
